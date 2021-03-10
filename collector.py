@@ -35,10 +35,12 @@ if (temp != None) :
 
 #run indefinetely until ctrl c
 while True:
-
+    
     time.sleep(interval - ((time.time() - starttime) % interval))
     #x -= interval
     temp = sp.current_playback()
+    if(temp == None):
+        print(temp, "", time.time())
     #make sure user is actually playing something
     if (temp != None) :
 
