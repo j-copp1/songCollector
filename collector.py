@@ -10,7 +10,7 @@ table = dynamodb.Table('songHistory')
 
 sp = spotipy.Spotify(auth_manager=config.sp)
 
-interval = 0.2
+interval = 0.4
 #x = 1000
 starttime = time.time()
 
@@ -35,14 +35,11 @@ if (temp != None) :
 
 #run indefinetely until ctrl c
 while True:
-    
+
     time.sleep(interval - ((time.time() - starttime) % interval))
     #x -= interval
     temp = sp.current_playback()
-    if(temp == None):
-        print(temp, "", time.time())
-    else :
-        print(temp['progress_ms'])
+    print(time.time())
     #make sure user is actually playing something
     if (temp != None) :
 
@@ -55,7 +52,7 @@ while True:
                 pass
             #a new song
             else : 
-                if temp != None :
+                if(temp != None) :
                     #add new item in database
                     print(lastSong)
                     table.put_item(Item={
