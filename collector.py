@@ -51,18 +51,19 @@ while True:
                 pass
             #a new song
             else : 
-                #add new item in database
-                print(lastSong)
-                table.put_item(Item={
-                'endTime' : lastSong['endTime'],
-                'trackName' : lastSong['trackName'],
-                'artistName' : lastSong['artistName'],
-                'albumName' : lastSong['albumName'],
-                'msPlayed' : lastSong['msPlayed']
-                })
-
-        lastSong['trackName'] = temp['item']['name']
-        lastSong['artistName'] = temp['item']['artists'][0]['name']
-        lastSong['albumName'] = temp['item']['album']['name']
-        lastSong['msPlayed'] = temp['progress_ms']
-        lastSong['endTime'] = str(t[0]) + "-" + str(t[1]) + "-" + str(t[2]) + " " + str(t[3]) + ":" + str(t[4]) + ":" + str(t[5])
+                if temp != None :
+                    #add new item in database
+                    print(lastSong)
+                    table.put_item(Item={
+                    'endTime' : lastSong['endTime'],
+                    'trackName' : lastSong['trackName'],
+                    'artistName' : lastSong['artistName'],
+                    'albumName' : lastSong['albumName'],
+                    'msPlayed' : lastSong['msPlayed']
+                    })
+        if temp != None :
+            lastSong['trackName'] = temp['item']['name']
+            lastSong['artistName'] = temp['item']['artists'][0]['name']
+            lastSong['albumName'] = temp['item']['album']['name']
+            lastSong['msPlayed'] = temp['progress_ms']
+            lastSong['endTime'] = str(t[0]) + "-" + str(t[1]) + "-" + str(t[2]) + " " + str(t[3]) + ":" + str(t[4]) + ":" + str(t[5])
