@@ -41,6 +41,8 @@ while True:
     temp = sp.current_playback()
     if(temp == None):
         print(temp, "", time.time())
+    else :
+        print(temp['progress_ms'])
     #make sure user is actually playing something
     if (temp != None) :
 
