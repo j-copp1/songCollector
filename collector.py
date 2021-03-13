@@ -3,6 +3,7 @@ from spotipy.oauth2 import SpotifyOAuth
 import config
 import time, datetime
 import boto3
+import driver
 
 def main () :
     try :
@@ -73,6 +74,9 @@ def main () :
                 lastSong['timePlayed'] = uTime
             except(TypeError):
                 pass
+    finally :
+        print("collector")
+        driver.main()
 
 if __name__ == '__main__' :
     main()
